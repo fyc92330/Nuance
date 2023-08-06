@@ -33,11 +33,11 @@ public class AmqpService {
 
 	@RabbitListener(queues = "demoQueue")
 	public void consumeMessage(String message) {
-		log.info("QueueName: {}, message: {}", DEMO_QUEUE_NAME, message);
+		log.info("Consume >> QueueName: {}, message: {}", DEMO_QUEUE_NAME, message);
 	}
 
 	@RabbitListener(queues = "demoMapQueue")
 	public void consumeMapMessage(Map<String, Object> messageMap) {
-		log.info("QueueName: {}, message: {}", DEMO_MAP_QUEUE_NAME, messageMap);
+		log.info("Consume >> QueueName: {}, message: {}", DEMO_MAP_QUEUE_NAME, messageMap);
 	}
 }
