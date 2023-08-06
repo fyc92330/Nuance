@@ -6,6 +6,7 @@
 //}
 rootProject.name = 'nuance'
 
+include 'amqp'
 include 'aop'
 include 'gql'
 include 'somnus'

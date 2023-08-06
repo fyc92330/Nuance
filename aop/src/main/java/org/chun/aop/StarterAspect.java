@@ -13,14 +13,13 @@ public class StarterAspect {
 
 	@Around("execution(* org.chun.aop.AopApplication.*(..))")
 	public Object aroundStarter(ProceedingJoinPoint joinPoint) throws Throwable {
-		AopApplication.threadName();
+		CurrentUtil.threadInfo();
 		return joinPoint.proceed();
 	}
 
 	@Around("execution(* org.chun.aop.*.*(..))")
 	public Object logThreadName(ProceedingJoinPoint joinPoint) throws Throwable {
-		log.warn("log>>>");
-		AopApplication.threadName();
+		CurrentUtil.threadInfo();
 		return joinPoint.proceed();
 	}
 }
