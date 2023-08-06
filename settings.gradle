@@ -1,0 +1,11 @@
+//pluginManagement {
+//    repositories {
+//        maven { url 'https://repo.spring.io/milestone' }
+//        gradlePluginPortal()
+//    }
+//}
+rootProject.name = 'nuance'
+
+include 'aop'
+include 'gql'
+include 'somnus'
