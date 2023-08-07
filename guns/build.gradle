@@ -4,4 +4,7 @@ plugins {
 }
 
 dependencies {
+    implementation 'org.mybatis.spring.boot:mybatis-spring-boot-starter:3.0.2'
+    annotationProcessor "org.springframework.boot:spring-boot-configuration-processor"
+    runtimeOnly 'org.postgresql:postgresql:42.6.0'
 }
