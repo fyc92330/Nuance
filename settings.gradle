@@ -8,5 +8,6 @@ rootProject.name = 'nuance'
 
 include 'amqp'
 include 'aop'
+include 'cucumber'
 include 'gql'
 include 'somnus'
