@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="org.chun.guns.common.SysDatabaseInfoDAO">
+    <resultMap id="vo" type="org.chun.guns.common.SysDatabaseInfo">
+        <id column="db_num" property="dbNum"/>
+        <result column="db_name" property="dbName"/>
+        <result column="db_username" property="dbUsername"/>
+        <result column="db_password" property="dbPassword"/>
+        <result column="db_url" property="dbUrl"/>
+        <result column="db_driver_type" property="dbDriverType"/>
+        <result column="db_port" property="dbPort"/>
+    </resultMap>
+
+    <sql id="columns">
+        ${alias}.db_num                      as ${prefix}db_num,
+        ${alias}.db_name                     as ${prefix}db_name,
+        ${alias}.db_username                 as ${prefix}db_username,
+        ${alias}.db_password                 as ${prefix}db_password,
+        ${alias}.db_url                      as ${prefix}db_url,
+        ${alias}.db_driver_type              as ${prefix}db_driver_type,
+        ${alias}.db_port                     as ${prefix}db_port
+    </sql>
+
+    <select id="getAll" resultMap="vo">
+        SELECT
+        <include refid="columns">
+            <property name="alias" value="info"/>
+            <property name="prefix" value=""/>
+        </include>
+        FROM SYS_DATABASE_INFO info
+    </select>
+
+    <select id="getById" resultMap="vo">
+        SELECT
+        <include refid="columns">
+            <property name="alias" value="info"/>
+            <property name="prefix" value=""/>
+        </include>
+        FROM SYS_DATABASE_INFO info
+        WHERE info.DB_NUM = #{dbNum}
+    </select>
+</mapper>

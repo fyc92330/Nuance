@@ -1,29 +1,27 @@
 package org.chun.guns.config;
 
-import java.util.HashMap;
-import java.util.Map;
-
-import javax.sql.DataSource;
-
+import lombok.RequiredArgsConstructor;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Primary;
+import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
 
-import lombok.RequiredArgsConstructor;
+import javax.sql.DataSource;
+import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
 
 @Configuration
 @RequiredArgsConstructor
-@EnableConfigurationProperties({DataSourceProperties.class, DatabaseRoleProperties.class})
+@EnableConfigurationProperties({DataSourceProperties.class})
 public class DatabaseConfig {
 
 	private final DataSourceProperties dataSourceProperties;
-	private final DatabaseRoleProperties databaseRoleProperties;
 
-	@Bean(name = "mainDataSource")
+	@Bean
 	@Primary
-	public DataSource dataSource(){
+	public DataSource dataSource() {
 		DriverManagerDataSource dataSource = new DriverManagerDataSource();
 		dataSource.setDriverClassName(dataSourceProperties.getDriverClassName());
 		dataSource.setUrl(dataSourceProperties.getUrl());
@@ -32,20 +30,8 @@ public class DatabaseConfig {
 		return dataSource;
 	}
 
-	@Bean(name = "listDataSource")
-	public DriverManagerDataSource dataSourceGun(){
-		DriverManagerDataSource dataSource = new DriverManagerDataSource();
-		dataSource.setDriverClassName(dataSourceProperties.getDriverClassName());
-		dataSource.setUrl(dataSourceProperties.getUrl());
-		return dataSource;
-	}
-
-	@Bean(name = "roleMap")
-	public Map<String, String> roleMap(){
-		Map<String, String> roleMap = new HashMap<>();
-		for(int i = 0; i < databaseRoleProperties.getCount(); i++){
-			roleMap.put(databaseRoleProperties.getUsers()[i], databaseRoleProperties.getPasswords()[i]);
-		}
-		return roleMap;
+	@Bean(name = "dataSourceMap")
+	public Map<String, JdbcTemplate> dataSourceMap() {
+		return new ConcurrentHashMap<>();
 	}
 }
