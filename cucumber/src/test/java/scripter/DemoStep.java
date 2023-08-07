@@ -29,7 +29,7 @@ public class DemoStep {
 
 	@And("過濾掉不是 {int} 的倍數")
 	public void 過濾掉不是的倍數(int arg0) {
-		integerStream = integerStream.filter(a -> a%3==0);
+		integerStream = integerStream.filter(a -> a%arg0==0);
 	}
 
 	@Then("印出剩下的值")
