@@ -1,4 +1,4 @@
-package org.chun.guns.common;
+package org.chun.guns.enums;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

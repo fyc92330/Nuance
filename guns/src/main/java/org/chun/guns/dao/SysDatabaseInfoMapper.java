@@ -1,5 +1,6 @@
-package org.chun.guns.common;
+package org.chun.guns.dao;
 
+import org.chun.guns.entity.SysDatabaseInfo;
 import org.springframework.jdbc.core.RowMapper;
 
 import java.sql.ResultSet;

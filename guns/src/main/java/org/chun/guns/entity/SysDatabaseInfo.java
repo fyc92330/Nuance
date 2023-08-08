@@ -1,4 +1,4 @@
-package org.chun.guns.common;
+package org.chun.guns.entity;
 
 import lombok.Getter;
 import lombok.Setter;
