@@ -8,7 +8,6 @@ import org.springframework.stereotype.Service;
 @Slf4j
 @Service
 public class AsyncService {
-
 	@Async
 	public void asyncBuilder() {
 		CurrentUtil.threadInfo(this);
