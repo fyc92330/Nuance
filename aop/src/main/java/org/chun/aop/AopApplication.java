@@ -4,7 +4,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.chun.aop.async.AsyncService;
 import org.chun.aop.validator.Role;
-import org.chun.aop.validator.RoleTypeDemoService;
+import org.chun.aop.validator.ValidatorService;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -24,14 +24,14 @@ public class AopApplication implements CommandLineRunner {
 	}
 
 	private final AsyncService asyncService;
-	private final RoleTypeDemoService roleTypeDemoService;
+	private final ValidatorService validatorService;
 
 	@Override
 	public void run(String... args) throws Exception {
 		log.info(" >>> run <<< " );
 		CurrentUtil.threadInfo(this);
 		asyncService.asyncBuilder();
-		roleTypeDemoService.printHelloWorld(new Role(1L, "1"));
+		validatorService.printHelloWorld(new Role(1L, "1"));
 	}
 
 	@Bean

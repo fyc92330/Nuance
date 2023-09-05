@@ -1,10 +1,8 @@
-package org.chun.aop.async;
+package org.chun.aop.aspect;
 
 import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
 import org.aspectj.lang.JoinPoint;
-import org.aspectj.lang.ProceedingJoinPoint;
-import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
 import org.aspectj.lang.annotation.Pointcut;
@@ -26,14 +24,9 @@ import java.util.regex.Pattern;
 @Slf4j
 @Aspect
 @Component
-public class StarterAspect {
+public class RolePermissionAspect {
 
 	private static final Pattern PARAM_VALUE_PATTERN = Pattern.compile("#p(\\d+)\\.(\\w+)\\(\\)");
-
-	@Pointcut("execution(* org.chun.aop.*.*(..))")
-	public void allProject() {
-
-	}
 
 	@Pointcut("execution(* org.chun.aop.validator.*.*(..))")
 	public void validator() {
@@ -102,10 +95,5 @@ public class StarterAspect {
 			log.info("====================================================================================");
 		}
 
-	}
-
-	@Around("allProject()")
-	public Object around(ProceedingJoinPoint joinPoint) throws Throwable {
-		return joinPoint.proceed();
 	}
 }

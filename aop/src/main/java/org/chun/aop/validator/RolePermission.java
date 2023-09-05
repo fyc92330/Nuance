@@ -22,7 +22,7 @@ public @interface RolePermission {
 	@AliasFor("type")
 	RoleType[] value() default {};
 
-	String message() default "";
+	String message() default "Without Permission.";
 
 	String param();
 
