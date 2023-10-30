@@ -3,6 +3,7 @@ package org.chun.aop;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.chun.aop.async.AsyncService;
+import org.chun.aop.dispersion.DemoTask;
 import org.chun.aop.validator.Role;
 import org.chun.aop.validator.ValidatorService;
 import org.springframework.boot.CommandLineRunner;
@@ -25,11 +26,13 @@ public class AopApplication implements CommandLineRunner {
 
 	private final AsyncService asyncService;
 	private final ValidatorService validatorService;
+	private final DemoTask demoTask;
 
 	@Override
 	public void run(String... args) throws Exception {
 		log.info(" >>> run <<< " );
 		CurrentUtil.threadInfo(this);
+		demoTask.execute();
 		asyncService.asyncBuilder();
 		validatorService.printHelloWorld(new Role(1L, "1"));
 	}
