@@ -2,6 +2,7 @@ package org.chun.eyes.controller;
 
 import jakarta.servlet.http.HttpSession;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -26,6 +27,11 @@ public class AdminController {
 	public ModelAndView index(HttpSession session){
 		System.out.println(session.getId());
 		return new ModelAndView("admin/adminIndex");
+	}
+
+	@GetMapping("/success")
+	public ResponseEntity<?> successResponse(){
+		return ResponseEntity.ok().build();
 	}
 
 }

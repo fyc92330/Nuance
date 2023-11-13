@@ -1,2 +1,5 @@
-package org.chun.eyes;public class CassandraConfig {
+package org.chun.eyes;
+
+public class CassandraConfig {
+
 }
