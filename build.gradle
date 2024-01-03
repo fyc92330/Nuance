@@ -1,4 +1,9 @@
+//allprojects {
+//
+//}
+
 subprojects {
+
     plugins.apply("java-library")
     plugins.apply("java")
 
@@ -7,19 +12,14 @@ subprojects {
     sourceCompatibility = JavaVersion.VERSION_17
     targetCompatibility = JavaVersion.VERSION_17
 
-    ext {
-        springBootVersion = '3.1.2'
-    }
-
     dependencies {
-        implementation 'org.springframework.boot:spring-boot-starter'
-        testImplementation 'org.springframework.boot:spring-boot-starter-test'
         compileOnly 'org.projectlombok:lombok'
         annotationProcessor 'org.projectlombok:lombok'
     }
 
-    tasks.named('test') {
-        useJUnitPlatform()
+    ext {
+        springBootVersion = '3.2.0'
+        lombokVersion = '1.18.24';
     }
 
     repositories {
@@ -32,21 +32,17 @@ subprojects {
         }
     }
 
+    dependencies {
+        testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    }
+
+    tasks.named('test') {
+        useJUnitPlatform()
+    }
+
+
     tasks.register('prepareKotlinBuildScriptModel') {
 
     }
 }
 
-tasks.register('refreshGit') {
-    File rootFile = file('.gitignore')
-    if (rootFile.exists()) {
-        println '[ Overwrite GitIgnore File From Nuance ]'
-        subprojects.forEach { sub ->
-            print sub.name + '...'
-            exec {
-                commandLine 'cp', rootFile.path, sub.projectDir.path + '/.gitignore'
-            }
-            println 'done'
-        }
-    }
-}
